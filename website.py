@@ -8,7 +8,7 @@ import base64
 #from matplotlib import pyplot
 
 from multipage import MultiPage
-from pages import generate_page, home # import your pages here
+from pages import generate_page, home, slider # import your pages here
 
 # Create an instance of the app 
 app = MultiPage()
@@ -36,5 +36,6 @@ st.write(f'<style>{CSS}</style>', unsafe_allow_html=True)
 # Add all your application here
 app.add_page("Generate Images", generate_page.app)
 app.add_page("Home Page", home.app)
+app.add_page("Generate your own image", slider.app)
 
 app.run()
