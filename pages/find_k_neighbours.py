@@ -83,7 +83,7 @@ def single_image_neighbours_info_as_dict(E_test_flatten, knn, art_info):
 def find_k_neighbours(image = "images/test_images/26601.jpeg", vggmodel = vggmodel,
                         knnmodel=knn, file_location = "data/wikiart_scraped.csv"):
     image = [np.asarray(image)]
-    shape_img = image[0].shape
+    shape_img = (128,128,3)
     output_shape_model = (4, 4, 512)
     # instantiate model
     model = vggmodel
