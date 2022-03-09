@@ -4,13 +4,12 @@ import tensorflow as tf
 import numpy as np
 from PIL import  Image
 import base64
-#import matplotlib.pyplot as plt
-#from matplotlib import pyplot
+
 
 from multipage import MultiPage
 from pages import generate_page, home, slider # import your pages here
 
-# Create an instance of the app 
+# Create an instance of the app
 app = MultiPage()
 
 #st.markdown("""# Welcome to the GANdy Warhol project!""")
