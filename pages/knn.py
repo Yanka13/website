@@ -19,7 +19,7 @@ if uploaded_file is not None:
     st.write("Similar images:")
 
     # find_k_neighbours
-    result = find_k_neighbours(image = resized_img, file_location = "data/wikiart_scraped.csv")
+    result = find_k_neighbours(image = resized_img, file_location = "data/abstract_ex.csv")
 
     col1, col2, col3, col4 = st.columns(4)
 
