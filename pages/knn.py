@@ -1,8 +1,7 @@
 import streamlit as st
 from find_k_neighbours import find_k_neighbours
 import skimage
-import pickle
-from tensorflow.keras.models import load_model
+from PIL import Image
 
 
 st.title('Find similar images')
@@ -14,12 +13,13 @@ uploaded_file = st.file_uploader("Choose an image")
 
 if uploaded_file is not None:
     st.write("Your image:")
-    img = uploaded_file
-    st.image(img)
+    with Image.open(uploaded_file) as img:
+        resized_img = img.resize((128, 128))
+    st.image(resized_img)
     st.write("Similar images:")
 
     # find_k_neighbours
-    result = find_k_neighbours(image = img, file_location = "data/wikiart_scraped.csv")
+    result = find_k_neighbours(image = resized_img, file_location = "data/wikiart_scraped.csv")
 
     col1, col2, col3, col4 = st.columns(4)
 
