@@ -50,9 +50,8 @@ def get_vgg19_model(vggmodel = "models/vgg19_autoencoder.h5"):
     model.compile()
     return model
 
-def get_art_info(style = "Abstract-Expressionism", file_location = "data/wikiart_scraped.csv"):
+def get_art_info(style = "Abstract-Expressionism", file_location = "data/abstract_ex.csv"):
     art_info = pd.read_csv(file_location)
-    art_info = art_info[art_info['Style']==style]
     return art_info
 
 def apply_transformer(imgs, transformer):
@@ -73,7 +72,7 @@ def single_image_neighbours_info_as_dict(E_test_flatten, knn, art_info):
     img_ids = list(result[1][0])
     for i in img_ids:
         image_info = {}
-        image_info['Image_filename'] = f"{art_info.iloc[i].name}.jpeg"
+        image_info['Image_filename'] = f"{art_info.iloc[i].ID}.jpeg"
         image_info['Title'] = f"{art_info.iloc[i].Artwork}"
         image_info['Artist'] = f"{art_info.iloc[i].Artist}"
         related_images.append(image_info)
@@ -81,7 +80,7 @@ def single_image_neighbours_info_as_dict(E_test_flatten, knn, art_info):
 
 
 def find_k_neighbours(image = "images/test_images/26601.jpeg", vggmodel = vggmodel,
-                        knnmodel=knn, file_location = "data/wikiart_scraped.csv"):
+                        knnmodel=knn, file_location = "data/abstract_ex.csv"):
     image = [np.asarray(image)]
     shape_img = (128,128,3)
     output_shape_model = (4, 4, 512)
