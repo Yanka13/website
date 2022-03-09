@@ -77,7 +77,7 @@ def app():
 
 
             knn_image = (arr2PIL(slider_image[0]))
-            resized_img = knn_image.skimage.transform.resize((128, 128))
+            resized_img = skimage.transform.resize(knn_image, (128, 128))
             st.write("Similar images:")
 
             # find_k_neighbours
