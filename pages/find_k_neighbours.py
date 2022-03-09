@@ -96,8 +96,8 @@ def single_image_neighbours_info_as_dict(E_test_flatten, knn, art_info):
 
 import matplotlib.pyplot as plt
 
-def find_k_neighbours(image = "raw_data/test_images/26601.jpeg", vggmodel = vggmodel,
-                        knnmodel=knn, file_location = "raw_data/wikiart_scraped.csv"):
+def find_k_neighbours(image = "images/test_images/26601.jpeg", vggmodel = vggmodel,
+                        knnmodel=knn, file_location = "data/wikiart_scraped.csv"):
     image = [read_img(image)]
     shape_img = image[0].shape
     output_shape_model = (4, 4, 512)
