@@ -24,7 +24,7 @@ def app():
             file1_ = open("GIF/movie_0.gif", "rb")
             contents1 = file1_.read()
             data_url1 = base64.b64encode(contents1).decode("utf-8")
-            st.markdown(f'<img src="data:image/gif;base64,{data_url1}" alt="cat gif">', unsafe_allow_html=True)
+            st.markdown(f'<img src="data:image/gif;base64,{data_url1}" alt="art generation gif">', unsafe_allow_html=True)
 
     with col2:
         st.image(image2,use_column_width=True)
@@ -32,7 +32,7 @@ def app():
             file2_ = open("GIF/movie_2.gif", "rb")
             contents2 = file2_.read()
             data_url2 = base64.b64encode(contents2).decode("utf-8")
-            st.markdown(f'<img src="data:image/gif;base64,{data_url2}" alt="cat gif">', unsafe_allow_html=True)
+            st.markdown(f'<img src="data:image/gif;base64,{data_url2}" alt="art generation gif">', unsafe_allow_html=True)
 
     with col3:
         st.image(image3,use_column_width=True)
@@ -40,7 +40,7 @@ def app():
             file3_ = open("GIF/movie_4.gif", "rb")
             contents3 = file3_.read()
             data_url3 = base64.b64encode(contents3).decode("utf-8")
-            st.markdown(f'<img src="data:image/gif;base64,{data_url3}" alt="cat gif">', unsafe_allow_html=True)
+            st.markdown(f'<img src="data:image/gif;base64,{data_url3}" alt="art generation gif">', unsafe_allow_html=True)
 
     with col4:
         st.image(image4,use_column_width=True)
@@ -48,7 +48,7 @@ def app():
             file4_ = open("GIF/movie_5.gif", "rb")
             contents4 = file4_.read()
             data_url4 = base64.b64encode(contents4).decode("utf-8")
-            st.markdown(f'<img src="data:image/gif;base64,{data_url4}" alt="cat gif">', unsafe_allow_html=True)
+            st.markdown(f'<img src="data:image/gif;base64,{data_url4}" alt="art generation gif">', unsafe_allow_html=True)
 
     with col5:
         st.image(image5,use_column_width=True)
@@ -56,4 +56,4 @@ def app():
             file5_ = open("GIF/movie_23.gif", "rb")
             contents5 = file5_.read()
             data_url5 = base64.b64encode(contents5).decode("utf-8")
-            st.markdown(f'<img src="data:image/gif;base64,{data_url5}" alt="cat gif">', unsafe_allow_html=True)
+            st.markdown(f'<img src="data:image/gif;base64,{data_url5}" alt="art generation gif">', unsafe_allow_html=True)
