@@ -1,5 +1,6 @@
 #for streamlit
 streamlit==1.2.0
+matplotlib
 
 #for Deep learning model
 tensorflow==2.5.0
@@ -11,4 +12,3 @@ scikit-image==0.19.1
 #other
 numpy==1.19.5
 pandas==1.3.5
-matplotlib==3.5.1
