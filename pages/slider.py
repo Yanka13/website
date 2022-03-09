@@ -55,7 +55,7 @@ def app():
         final_image = final_model.predict(noise)
 
         col1, col2 = st.columns(2)
-
+        col2.write('Final image')
         col2.image(arr2PIL(final_image[0]),use_column_width=True)
         #model_list_len = len(model_list)-1
         #max = [i for i, v in enumerate(model_list)]
@@ -63,25 +63,21 @@ def app():
 
         slider_model = models[sliders]
         slider_image = slider_model.predict(noise)
+        col1.write('Image in progress')
         col1.image(arr2PIL(slider_image[0]),use_column_width=True)
-        
-        
+
+
         with st.container():
-            st.write("This is inside the container")
-            
+
             st.title('Find similar images')
-            st.write('Encodes images into latent space and finds 4 closest neighbours in that space')
+            st.write("Encodes generated images into latent space with Abstract Expressionism dataset \
+                 and finds 4 closest neighbours in that space")
 
             st.set_option('deprecation.showfileUploaderEncoding', False)
 
-            #uploaded_file = st.file_uploader("Choose an image")
 
-            #if uploaded_file is not None:
-                #st.write("Your image:")
             knn_image = (arr2PIL(slider_image[0]))
-            #with Image.open(arr2PIL(slider_image[0])) as img:
             resized_img = knn_image.skimage.transform.resize((128, 128))
-            st.image(resized_img)
             st.write("Similar images:")
 
             # find_k_neighbours
@@ -104,7 +100,6 @@ def app():
                 st.image(f"images/abstract_ex/{result[2]['Image_filename']}")
                 st.write(f"{result[2]['Title']}")
                 st.write(f"by {result[2]['Artist']}")
-
 
             with col4:
                 st.image(f"raw_data/abstract_ex/{result[3]['Image_filename']}")
