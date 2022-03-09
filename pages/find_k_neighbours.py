@@ -1,17 +1,15 @@
-import os
 import numpy as np
-from tensorflow.keras.applications import VGG19
 from tensorflow.keras.models import load_model
 from skimage.transform import resize
-import os
 import skimage.io
 import numpy as np
 import pandas as pd
 import pickle
 
-knnfile = "raw_data/models/knnpickle_file"
+
+knnfile = "models/knnpickle_file"
 knn = pickle.load(open(knnfile, "rb"))
-vgg = "raw_data/models/vgg19_autoencoder.h5"
+vgg = "models/vgg19_autoencoder.h5"
 vggmodel = load_model(vgg)
 vggmodel.compile()
 
@@ -24,12 +22,6 @@ REQUIRES TO RUN:
 """
 
 
-modelpath = "raw_data/models"
-outDir = "raw_data/created_images"
-extensions = [".jpg", ".jpeg"]
-dataDir = "raw_data/abstract_ex2"
-testDir = "raw_data/test_images"
-
 class ImageTransformer(object):
 
     def __init__(self, shape_resize):
@@ -39,13 +31,6 @@ class ImageTransformer(object):
         img_transformed = resize_img(img, self.shape_resize)
         img_transformed = normalize_img(img_transformed)
         return img_transformed
-
-def resize_image(input_image):
-    img = read_img(input_image)
-    if np.array(img).ndim < 3 :
-        img = np.atleast_3d(img)
-    img = resize(img, (128,128))
-    return img
 
 def normalize_img(img):
     return img / 255.
@@ -60,12 +45,12 @@ def resize_img(img, shape_resized):
     assert img_resized.shape == shape_resized
     return img_resized
 
-def get_vgg19_model(vggmodel = "raw_data/models/vgg19_autoencoder.h5"):
+def get_vgg19_model(vggmodel = "models/vgg19_autoencoder.h5"):
     model = load_model(vggmodel)
     model.compile()
     return model
 
-def get_art_info(style = "Abstract-Expressionism", file_location = "raw_data/wikiart_scraped.csv"):
+def get_art_info(style = "Abstract-Expressionism", file_location = "data/wikiart_scraped.csv"):
     art_info = pd.read_csv(file_location)
     art_info = art_info[art_info['Style']==style]
     return art_info
@@ -94,11 +79,10 @@ def single_image_neighbours_info_as_dict(E_test_flatten, knn, art_info):
         related_images.append(image_info)
     return related_images
 
-import matplotlib.pyplot as plt
 
 def find_k_neighbours(image = "images/test_images/26601.jpeg", vggmodel = vggmodel,
                         knnmodel=knn, file_location = "data/wikiart_scraped.csv"):
-    image = [read_img(image)]
+    image = [np.asarray(image)]
     shape_img = image[0].shape
     output_shape_model = (4, 4, 512)
     # instantiate model
@@ -109,10 +93,8 @@ def find_k_neighbours(image = "images/test_images/26601.jpeg", vggmodel = vggmod
     # transform into embeddings
     E_test = model.predict(X_test)
     E_test_flatten = get_flattened_array(E_test, output_shape_model)
-    # process with knn
-
+    # process with knn and get info about neighbours from csv file
     art_info = get_art_info(file_location = file_location)
-    ###
     result = single_image_neighbours_info_as_dict(E_test_flatten, knnmodel, art_info)
     return result
 
