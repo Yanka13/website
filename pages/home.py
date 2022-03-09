@@ -4,7 +4,7 @@ import streamlit as st
 def app():
     st.markdown("""
 
-## Intro title
+# Welcome to the GANdy Warhol project!
 
 Intro..., explore pages and have some fun...
 
