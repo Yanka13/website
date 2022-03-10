@@ -7,7 +7,7 @@ import base64
 
 
 from multipage import MultiPage
-from pages import home, slider, GIFpage, knn # import your pages here
+from pages import home, slider, GIFpage, knn, thanks # import your pages here
 
 # Create an instance of the app
 app = MultiPage()
@@ -35,8 +35,9 @@ st.write(f'<style>{CSS}</style>', unsafe_allow_html=True)
 # Add all your application here
 app.add_page("Home Page", home.app)
 app.add_page("Generate your own image", slider.app)
-app.add_page("Check similar images", knn.app)
+app.add_page("Find similar images", knn.app)
 app.add_page("GIF gallery", GIFpage.app)
+app.add_page("Acknowledgements", thanks.app)
 
 
 app.run()
