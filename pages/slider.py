@@ -15,7 +15,9 @@ import skimage
 
 
 def app():
-    st.markdown("""# Now it's your turn!""")
+    st.title("Generate art!")
+    st.write("Click the generate button to create a piece of art using our trained generator model!")
+    st.write("Use the slider to view the evolution of the image from 'random noise' to the final product.")
 
     @st.cache(allow_output_mutation=True)
     def load_models(model_list):
@@ -28,7 +30,8 @@ def app():
     @st.cache(allow_output_mutation=True)
     def get_muatable_list():
         return []
-
+    image_text = {0: "Random noise", 1: "Image after 1 epoch", 2: "Image after 100 epochs",
+                    3: "Image after 1000 epochs", 4: "Image after 10,000 epochs" }
 
     model_list = ['models/model_epoch_0.h5', 'models/model_epoch_1.h5', 'models/model_epoch_100.h5', 'models/model_epoch_1000.h5', 'models/model_epoch_10000.h5']
     #slider_labels = ['noise', 'epoch 1', 'epoch 100', 'epoch 1000', 'epoch 10000']
@@ -62,8 +65,9 @@ def app():
         sliders = st.slider('MODEL SELECTION',0,len(model_list)-1,0,step=1, key=st.session_state['slider'])
 
         slider_model = models[sliders]
+        col1.write(image_text[sliders])
         slider_image = slider_model.predict(noise)
-        col1.write('Image in progress')
+
         col1.image(arr2PIL(slider_image[0]),use_column_width=True)
 
 
@@ -71,17 +75,17 @@ def app():
 
             st.title('Find similar images')
             st.write("Encodes generated images into latent space with Abstract Expressionism dataset \
-                 and finds 4 closest neighbours in that space")
-
-            st.set_option('deprecation.showfileUploaderEncoding', False)
+                 and finds 4 closest neighbours in that space.")
 
 
             knn_image = (arr2PIL(slider_image[0]))
-            resized_img = knn_image.skimage.transform.resize((128, 128))
+            resized_img = Image.resize(knn_image, (128, 128))
+            img = resized_img.save("img.jpeg")
+            st.write(img)
             st.write("Similar images:")
 
             # find_k_neighbours
-            result = find_k_neighbours(image = resized_img, file_location = "data/wikiart_scraped.csv")
+            result = find_k_neighbours(image = "img.jpeg", file_location = "data/abstract_ex.csv")
 
             col1, col2, col3, col4 = st.columns(4)
 
