@@ -42,6 +42,6 @@ def app():
 
 
         with col4:
-            st.image(f"raw_data/abstract_ex/{result[3]['Image_filename']}")
+            st.image(f"images/abstract_ex/{result[3]['Image_filename']}")
             st.write(f"{result[3]['Title']}")
             st.write(f"by {result[3]['Artist']}")
