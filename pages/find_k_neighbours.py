@@ -5,10 +5,11 @@ import skimage.io
 import numpy as np
 import pandas as pd
 import pickle
+import joblib
 
 
-knnfile = "models/knnpickle_file"
-knn = pickle.load(open(knnfile, "rb"))
+knnfile = "models/knnmodel.joblib"
+knn = joblib.load(knnfile)
 vgg = "models/vgg19_autoencoder.h5"
 vggmodel = load_model(vgg)
 vggmodel.compile()

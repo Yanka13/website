@@ -1,1 +1,2 @@
 models/knnpickle_file filter=lfs diff=lfs merge=lfs -text
+models/knnmodel.joblib filter=lfs diff=lfs merge=lfs -text
