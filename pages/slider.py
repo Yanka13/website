@@ -85,7 +85,7 @@ def app():
                 break
             cpt += 1
 
-        col1.write(f'image after epoch {slider}')
+        col1.write(f'{slider}')
         slider_image = current_all_images[cpt]
 
         col1.image(arr2PIL(slider_image[0]),use_column_width=True)
