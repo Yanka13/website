@@ -5,7 +5,8 @@ from PIL import Image
 
 def app():
     st.title('Find similar images')
-    st.write('Encodes images into latent space and finds 4 closest neighbours in that space')
+    st.write('Encodes images into latent space and finds 4 closest neighbours in that space \
+        from our dataset of 3,600 Abstract Expressionist artworks')
 
     st.set_option('deprecation.showfileUploaderEncoding', False)
 
