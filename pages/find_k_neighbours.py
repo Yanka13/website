@@ -50,7 +50,7 @@ def get_vgg19_model(vggmodel = "models/vgg19_autoencoder.h5"):
     model.compile()
     return model
 
-def get_art_info(style = "Abstract-Expressionism", file_location = "data/abstract_ex.csv"):
+def get_art_info(file_location = "data/abstract_ex.csv"):
     art_info = pd.read_csv(file_location)
     return art_info
 
@@ -79,16 +79,19 @@ def single_image_neighbours_info_as_dict(E_test_flatten, knn, art_info):
     return related_images
 
 
-def find_k_neighbours(image = "images/test_images/26601.jpeg", vggmodel = vggmodel,
+def find_k_neighbours(image = "images/test_images/26601.jpeg", transform = True, vggmodel = vggmodel,
                         knnmodel=knn, file_location = "data/abstract_ex.csv"):
     image = [np.asarray(image)]
     shape_img = (128,128,3)
     output_shape_model = (4, 4, 512)
     # instantiate model
     model = vggmodel
-    transformer = ImageTransformer(shape_img)
-    img_transformed = apply_transformer(image, transformer)
-    X_test = get_images_as_array(img_transformed, shape_img)
+    if transform == True:
+        transformer = ImageTransformer(shape_img)
+        img_transformed = apply_transformer(image, transformer)
+        X_test = get_images_as_array(img_transformed, shape_img)
+    elif transform == False:
+        X_test = get_images_as_array(image, shape_img)
     # transform into embeddings
     E_test = model.predict(X_test)
     E_test_flatten = get_flattened_array(E_test, output_shape_model)
