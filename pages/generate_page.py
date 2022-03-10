@@ -9,7 +9,7 @@ from .utils import arr2PIL
 def app():
     st.markdown("""# Watch the magic happen in real time!""")
     if 'kagglegan_gen.h5' not in os.listdir('models'):
-        st.markdown("Please upload model through `Upload model` page!")
+        st.markdown("Please upload model!")
     else:
         @st.cache(allow_output_mutation=True)
         def load_model():
